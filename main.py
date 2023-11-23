@@ -25,7 +25,7 @@ class EnemyContainer:
 class Room:
 
     class Spawn:
-        move_options = ["North"]
+        move_options = ["NORTH"]
         enemy_chance = 0
         loot_chance = 0
         dialogues = [
@@ -34,7 +34,7 @@ class Room:
         ]
 
     class Crossroad:
-        move_options = ["North", "South", "East", "West"]
+        move_options = ["NORTH", "SOUTH", "EAST", "WEST"]
         enemy_chance = 15
         loot_chance = 15
         dialogues = [
@@ -51,15 +51,15 @@ class Room:
         ]
 
     class NSHallway:
-        move_options = ["North", "South"]
+        move_options = ["NORTH", "SOUTH"]
         enemy_chance = 15
         loot_chance = 5
         dialogues = [
             "You are in a hallway."
         ]
 
-    class EWHallway
-        move_options = ["East", "West"]
+    class EWHallway:
+        move_options = ["EAST", "WEST"]
         enemy_chance = 15
         loot_chance = 5
         dialogues = [
@@ -122,19 +122,20 @@ def move_choice_list():
 
 def move(mchoice):
     global previous_room
+    mchoice = mchoice.upper()
     if mchoice in current_room.move_options:
         previous_room = enter_room()
-        if mchoice == "North":
+        if mchoice == "NORTH":
             coordinates[1] += 1
-        elif mchoice == "South":
+        elif mchoice == "SOUTH":
             coordinates[1] += -1
-        elif mchoice == "East":
+        elif mchoice == "EAST":
             coordinates[0] += -1
-        elif mchoice == "West":
+        elif mchoice == "WEST":
             coordinates[0] += 1
-        elif mchoice == "Down":
+        elif mchoice == "DOWN":
             coordinates[2] += -1
-        elif mchoice == "Up":
+        elif mchoice == "UP":
             coordinates[2] += 1
         else:
             print("Invalid Direction! Type the direction you want to move in")
